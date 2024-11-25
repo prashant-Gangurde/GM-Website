@@ -1,0 +1,30 @@
+
+{%extends 'base.html'%}
+{%block start%}
+<div class="conatiner">
+    <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Sr.No</th>
+            <th scope="col">services</th>
+            <th scope="col">Fees</th>
+            <th scope="col">Duration</th>
+            <th scope="col">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+            {% for records in queryset %}
+          <tr>
+            <th scope="row">{{forloop.counter}}</th>
+            <td>{{records.name}}</td>
+            <td>{{records.fees}}</td>
+            <td>{{records.duration}}</td>
+            <td><a href="{% url 'apply_page' records.id %}" class="btn btn-primary">Apply</a></td>
+
+           </tr>
+          
+          {%endfor%}
+        </tbody>
+      </table>
+</div>
+{% endblock %}
