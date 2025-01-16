@@ -40,8 +40,15 @@
                 </ul>
               </li> -->
             </ul>
-            <form role="search">
-              <input class="form-control" type="search" placeholder="Search" aria-label="Search">
+            <form class= "d-flex" role="search">
+              <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+              <button class = "btn btn-outline- success mx-2" type="submit"> Search</button>
+              {% if user.is_authenticated %}
+              <button><a class = "btn btn-outline- success mx-2" href="{% url 'logout_page'%}">{{user.first_name}} </a></button>
+              {% else %}
+             <button> <a class = "btn btn-outline- success mx-2" href="{% url 'login_page'%}">Login </a> </button>
+              {%endif%}
+
             </form>
           </div>
         </div>

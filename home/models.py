@@ -35,5 +35,6 @@ class Applicant(models.Model):
     age = models.IntegerField(blank=False)
     gender = models.CharField(max_length=40,blank=False)
     email_add = models.CharField(max_length=40,blank=False)
+    
     def __str__(self) -> str:
         return f"{self.name} - {self.age}"

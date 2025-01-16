@@ -1,9 +1,15 @@
 from django.shortcuts import render,redirect
 from home.models import *
-
+from django.contrib.auth.models import User
+from django.contrib.auth import authenticate,login,logout
+from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 # Create your views here.
 def home(request):
     return render(request, 'index.html')
+
+
+@login_required(login_url='login_page')
 def services(request):
     queryset = NewService.objects.all().values()
     context = {'queryset':queryset}
@@ -23,3 +29,55 @@ def apply_page(request,id):
        s1.save()
        redirect('services')
     return render(request, 'apply_page.html')
+
+
+
+
+def login_page(request):
+    if request.method == 'POST':
+        
+        username = request.POST.get("username")
+        password = request.POST.get("password")
+        # print(username,password)
+    
+        if not User.objects.filter(username = username).exists():
+            messages.error(request, "Username not exist")
+            return redirect('login_page')
+        else:
+           x = authenticate(request,username=username,password=password)
+           if x is None:
+              
+              messages.error(request,"invalid credentials")
+              return redirect('login_page')
+           else:
+               messages.success(request,"log in success!")
+               login(request,user = x)
+               return redirect('/')
+            
+        # print(username,password)
+    return render(request,'login.html')
+        
+def register_page(request):
+    if request.method == "POST":
+        first_name = request.POST.get('first_name')
+        last_name = request.POST.get('last_name')
+        email = request.POST.get('email')
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+        if User.objects.filter(username = username).exists():
+            messages.error(request, "Username Already Taken")
+        else:
+            user = User.objects.create(first_name = first_name, last_name = last_name, email = email, username = username)
+
+            user.set_password(password)
+
+            user.save()
+            messages.success(request, "Account Created Successfully")
+            return redirect('login_page')
+
+            
+    return render(request, 'register.html')
+
+def logout_page(request):
+    logout(request)
+    return redirect('/')

@@ -1,0 +1,36 @@
+
+{%extends 'base.html'%}
+{%block start%}
+<div class="container col-6 shadow-lg mt-3 p-5">
+    {% if messages %}
+    <div class="container border border-success-subtle">
+    {% for msg in messages %}
+        {{msg}}
+    {% endfor %}
+    </div>
+    {% endif %}
+    <hr>
+
+    <strong class = "fs-3">Welcome Back Log in to Your Account !</strong>
+
+    <form method="POST" enctype="multipart/form-data">
+        {%csrf_token%}
+        <div class="mb-3">
+          <label for="exampleInputEmail1" class="form-label">Username</label>
+          <input type="text" class="form-control" aria-describedby="emailHelp" name="username">
+          
+        </div>
+        <div class="mb-3">
+          <label for="exampleInputPassword1" class="form-label">Password</label>
+          <input type="password" class="form-control"  name="password">
+        </div>
+        <div class="mb-3 form-check">
+          <input type="checkbox" class="form-check-input" id="exampleCheck1">
+          <label class="form-check-label" for="exampleCheck1">Check me out</label>
+        </div>
+        <button type="submit" class="btn btn-primary">Login</button>
+        Don't have account? <a href="{% url 'register_page' %}"> Register</a>
+      </form>
+
+</div>
+{%endblock%}
