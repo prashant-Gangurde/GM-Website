@@ -25,7 +25,9 @@ SECRET_KEY = 'django-insecure-zwlu1@m&t71k6zbm0=pzfvx9q(*&5lk681z35+za9!bcd)qije
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
+# ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
+
 
 
 # Application definition
@@ -41,13 +43,24 @@ INSTALLED_APPS = [
 EXTERNAL_APPS =['home']
 INSTALLED_APPS += EXTERNAL_APPS
 
+# MIDDLEWARE = [
+# 'django.middleware.security.SecurityMiddleware',
+# 'whitenoise.middleware.WhiteNoiseMiddleware',
+# # other middleware
+
+
+# ]
 MIDDLEWARE = [
-'django.middleware.security.SecurityMiddleware',
-'whitenoise.middleware.WhiteNoiseMiddleware',
-# other middleware
-
-
+    'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
+    'django.contrib.sessions.middleware.SessionMiddleware',  # Added for sessions
+    'django.middleware.common.CommonMiddleware',
+    'django.middleware.csrf.CsrfViewMiddleware',
+    'django.contrib.auth.middleware.AuthenticationMiddleware',  # Added for authentication
+    'django.contrib.messages.middleware.MessageMiddleware',  # Added for messages
+    'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
 
 ROOT_URLCONF = 'gmwebsite.urls'
 
@@ -115,16 +128,39 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
-STATIC_URL = 'static/'
+# STATIC_URL = 'static/'
+# STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
+# STATIC_URL = "/static/"
+# STATIC_ROOT = BASE_DIR / "staticfiles"
+
+
+
+# STATICFILES_DIRS = [BASE_DIR / "static"]
+# DEBUG = False
+# ALLOWED_HOSTS = ['https://gm-website-2bvl01wla-swatii1436s-projects.vercel.app', 'localhost']
+
+
+
+# Static files (CSS, JavaScript, images)
+STATIC_URL = '/static/'
+
+# For production use with WhiteNoise to serve static files efficiently
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
-STATIC_URL = "/static/"
+
+# Define the root directory for static files (used by collectstatic)
 STATIC_ROOT = BASE_DIR / "staticfiles"
 
-
-
+# Directories where Django will search for additional static files
 STATICFILES_DIRS = [BASE_DIR / "static"]
-DEBUG = False
-ALLOWED_HOSTS = ['your-vercel-domain.vercel.app', 'localhost']
+
+# Set DEBUG to True only in development
+DEBUG = True  # Set to True in development
+
+# Hostnames allowed to serve your Django app (add your domain and localhost)
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'https://gm-website-2bvl01wla-swatii1436s-projects.vercel.app']
+
+
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
