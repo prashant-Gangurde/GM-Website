@@ -154,10 +154,10 @@ STATIC_ROOT = BASE_DIR / "staticfiles"
 STATICFILES_DIRS = [BASE_DIR / "static"]
 
 # Set DEBUG to True only in development
-DEBUG = False  # Set to True in development
+DEBUG = True  # Set to True in development
 
 # Hostnames allowed to serve your Django app (add your domain and localhost)
-ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'gm-website-44qh-o85miiulr.vercel.app']
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'ghttps://gm-website-44qh-31r0afetl-swatii1436s-projects.vercel.app']
 
 
 
