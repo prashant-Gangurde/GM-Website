@@ -160,9 +160,8 @@ DEBUG = True  # Set to True in development
 ALLOWED_HOSTS = [
     '127.0.0.1', 
     'localhost', 
-    'gm-website-44qh-calvnnmng-swatii1436s-projects.vercel.app'
+    '.vercel.app',  # Allow all Vercel subdomains
 ]
-
 
 
 
