@@ -1,67 +1,124 @@
 {% extends 'base.html' %}
-
 {% block start %}
 <style>
+    /* Main container styling */
     .container {
-        margin: auto;
-        margin-top: 20px;
-        padding: 20px;
-        border-radius: 10px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-        background-color: #ffffff;
+        margin: 50px auto;
+        padding: 40px;
+        border-radius: 15px;
+        background: #ffffff;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
         width: 80%;
+        font-family: 'Roboto', sans-serif;
     }
 
+    /* Page title */
+    .page-title {
+        text-align: center;
+        font-size: 40px;
+        font-weight: 700;
+        color: #333;
+        letter-spacing: 3px;
+        text-transform: uppercase;
+        margin-bottom: 50px;
+    }
+
+    /* Table styling */
     .table {
         width: 100%;
-        border-collapse: collapse;
-        margin-top: 15px;
+        border-collapse: separate;
+        border-spacing: 0 10px; /* Vertical spacing between rows */
+        background-color: #fff;
+        border-radius: 8px;
+        overflow: hidden;
+    }
+
+    .table th, .table td {
+        padding: 20px;
+        text-align: center;
+        font-size: 16px;
+        color: #555;
+        text-transform: uppercase;
     }
 
     .table th {
-        background-color: #4caf50;
+        background-color: #00BFFF; /* Sky blue for headers */
         color: white;
-        padding: 12px;
-        text-align: center;
-    }
-
-    .table td {
-        padding: 10px;
-        text-align: center;
-        border: 1px solid #ddd;
-    }
-
-    /* No background color for the first two columns (Sr.No and Services) */
-    .table tr:nth-child(even) td:nth-child(3),
-    .table tr:nth-child(odd) td:nth-child(3),
-    .table tr:nth-child(even) td:nth-child(4),
-    .table tr:nth-child(odd) td:nth-child(4),
-    .table tr:nth-child(even) td:nth-child(5),
-    .table tr:nth-child(odd) td:nth-child(5) {
-        background-color: #f9f9f9;
-    }
-
-    /* Hover effect for all rows */
-    .table tr:hover {
-        background-color: #f1f1f1;
-    }
-
-    .btn-primary {
-        background-color: #28a745;
-        color: white;
-        padding: 8px 12px;
-        border: none;
-        border-radius: 5px;
-        text-decoration: none;
         font-weight: bold;
     }
 
+    .table td {
+        background-color: #f7f7f7;
+        border-radius: 8px;
+    }
+
+    .table tr:hover td {
+        background-color: #e0f7fa; /* Light cyan on hover */
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        transition: all 0.3s ease-in-out;
+    }
+
+    /* Exclude background color on Sr.No column */
+    .table td:first-child {
+        background-color: transparent; /* Sr.No column stays transparent */
+    }
+
+    .table tr:nth-child(even) td {
+        background-color: #f1f1f1;
+    }
+
+    /* Button styling */
+    .btn-primary {
+        display: inline-block;
+        background-color: #FF6347; /* Tomato color */
+        color: white;
+        padding: 15px 30px;
+        margin: 15px 0;
+        border: none;
+        border-radius: 25px;
+        font-size: 18px;
+        text-decoration: none;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        transition: background-color 0.3s ease, transform 0.3s ease;
+    }
+
     .btn-primary:hover {
-        background-color: #218838;
+        background-color: #FF4500; /* Darker tomato color */
+        transform: scale(1.05);
+    }
+
+    /* Custom hover effects for rows */
+    .table tr:hover td:first-child {
+        background-color: transparent; /* No hover effect for Sr. No. column */
+    }
+
+    /* Responsive design */
+    @media (max-width: 768px) {
+        .container {
+            width: 95%;
+            padding: 25px;
+        }
+
+        .page-title {
+            font-size: 30px;
+            margin-bottom: 30px;
+        }
+
+        .table th, .table td {
+            font-size: 14px;
+            padding: 15px;
+        }
+
+        .btn-primary {
+            padding: 12px 25px;
+            font-size: 16px;
+        }
     }
 </style>
 
 <div class="container">
+    <h1 class="page-title">Available Services</h1>
     <table class="table">
         <thead>
             <tr>
@@ -85,4 +142,5 @@
         </tbody>
     </table>
 </div>
+
 {% endblock %}

@@ -62,6 +62,9 @@ MIDDLEWARE = [
 ]
 
 
+
+
+
 ROOT_URLCONF = 'gmwebsite.urls'
 
 TEMPLATES = [
@@ -85,18 +88,10 @@ WSGI_APPLICATION = 'gmwebsite.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
-
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
-#     }
-# }
-import os
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join('/tmp', 'db.sqlite3'),  # Temporary directory
+        'NAME': BASE_DIR / 'db.sqlite3',  # Ensure 'BASE_DIR' is correctly defined
     }
 }
 

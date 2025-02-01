@@ -1,7 +1,190 @@
+{% extends 'base.html' %}
 
-{%extends 'base.html'%}
-{%block start%}
-<p>
-    hlooo
-</p>
-{%endblock%}
+{% block start %}
+<style>
+    /* General container styling */
+    .about-container {
+        max-width: 900px;
+        margin: 20px auto;
+        padding: 30px;
+        background: linear-gradient(145deg, #ffffff, #f4f8fc);
+        border-radius: 15px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        color: #333;
+        font-family: 'Poppins', sans-serif;
+    }
+
+    .about-header {
+        text-align: center;
+        margin-bottom: 30px;
+    }
+
+    .about-header h1 {
+        font-size: 2.8rem;
+        color: #0052cc;
+        margin: 0;
+        font-weight: bold;
+    }
+
+    .about-header p {
+        font-size: 1.1rem;
+        color: #666;
+        margin-top: 10px;
+        line-height: 1.6;
+    }
+
+    .about-section {
+        margin-bottom: 30px;
+    }
+
+    .about-section h2 {
+        font-size: 2rem;
+        color: #ff6f61;
+        margin-bottom: 15px;
+        border-bottom: 3px solid #0052cc;
+        display: inline-block;
+        padding-bottom: 5px;
+    }
+
+    .about-section p {
+        line-height: 1.8;
+        font-size: 1.1rem;
+        color: #444;
+        text-align: justify;
+    }
+
+    .sarpanch-container {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        margin-bottom: 20px;
+        padding: 15px;
+        background: #f9f9f9;
+        border-radius: 10px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .sarpanch-photo {
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 3px solid #0052cc;
+    }
+
+    .sarpanch-info {
+        flex: 1;
+    }
+
+    .sarpanch-info p {
+        margin: 0;
+        font-size: 1rem;
+        color: #333;
+    }
+
+    .sarpanch-info p:first-child {
+        font-weight: bold;
+        font-size: 1.1rem;
+        margin-bottom: 5px;
+    }
+
+    .team-list {
+        list-style: none;
+        padding: 0;
+        margin-top: 10px;
+    }
+
+    .team-list li {
+        margin-bottom: 8px;
+        font-size: 1rem;
+        color: #555;
+    }
+
+    .contact-info {
+        text-align: center;
+        margin-top: 30px;
+    }
+
+    .contact-info h2 {
+        font-size: 1.8rem;
+        color: #0052cc;
+        margin-bottom: 15px;
+    }
+
+    .contact-info p {
+        font-size: 1.1rem;
+        color: #444;
+        line-height: 1.8;
+    }
+
+    .contact-info p strong {
+        color: #333;
+    }
+
+    @media (max-width: 768px) {
+        .about-header h1 {
+            font-size: 2.2rem;
+        }
+
+        .about-section h2 {
+            font-size: 1.6rem;
+        }
+
+        .contact-info h2 {
+            font-size: 1.5rem;
+        }
+    }
+</style>
+
+<div class="about-container">
+    <div class="about-header">
+        <h1>About Us</h1>
+        <p>Discover who we are and our commitment to creating a brighter, sustainable future for our community.</p>
+    </div>
+
+    <div class="about-section">
+        <h2>Our Mission</h2>
+        <p>
+            To empower our community through effective governance, efficient services, and sustainable development.
+            Our goal is to foster self-reliance, inclusivity, and a higher quality of life for all residents.
+        </p>
+    </div>
+
+    <div class="about-section">
+        <h2>Our Vision</h2>
+        <p>
+            To build a forward-thinking, thriving community where every individual has access to opportunities, education, and resources to achieve their fullest potential.
+        </p>
+    </div>
+
+    <div class="about-section">
+        <h2>Leadership Team</h2>
+
+        <!-- Sarpanch Section with Photo -->
+        <div class="sarpanch-container">
+            <img src="/static/images/sarpanch.jpg" alt="Sarpanch" class="sarpanch-photo">
+            <div class="sarpanch-info">
+                <p><strong>Sarpanch:</strong> [Name of Sarpanch]</p>
+                <p>Committed to leading the village towards sustainable development and inclusive growth.</p>
+            </div>
+        </div>
+
+        <!-- Other Members (Text Only) -->
+        <ul class="team-list">
+            <li><strong>Secretary:</strong> [Name of Secretary]</li>
+            <li><strong>Member 1:</strong> [Name]</li>
+            <li><strong>Member 2:</strong> [Name]</li>
+        </ul>
+    </div>
+
+    <div class="contact-info">
+        <h2>Contact Us</h2>
+        <p>
+            <strong>Address:</strong> [Full Address of Gram Panchayat Office] <br>
+            <strong>Phone:</strong> +91-XXXXXXXXXX <br>
+            <strong>Email:</strong> info@grampanchayatname.in <br>
+            <strong>Office Hours:</strong> Monday to Friday, 9:00 AM to 5:00 PM
+        </p>
+    </div>
+</div>
+{% endblock %}

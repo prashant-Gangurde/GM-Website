@@ -4,6 +4,8 @@ from django.contrib.auth.models import User
 from django.contrib.auth import authenticate,login,logout
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from django.http import HttpResponse
+
 # Create your views here.
 def home(request):
     return render(request, 'index.html')
@@ -25,6 +27,7 @@ def apply_page(request,id):
        gender =request.POST.get('gender')
        email =request.POST.get('email')
        mobile =request.POST.get('mobile')
+       messages.success(request, "Your application has been submitted successfully!")
        s1 =Applicant.objects.create(name = name,age =age,mobile=mobile,gender=gender,email_add= email)
        s1.save()
        redirect('services')
@@ -81,3 +84,24 @@ def register_page(request):
 def logout_page(request):
     logout(request)
     return redirect('/')
+
+
+def submit_form(request):
+    if request.method == 'POST':
+        name = request.POST['name']
+        email = request.POST['email']
+        phone = request.POST['phone']
+        # Save data to the database
+        CandidateDetails.objects.create(name=name, email=email, phone=phone)
+        return HttpResponse("Thank you for registering. We will notify you of future updates.")
+    return redirect('careers')
+
+
+
+def careers(request):
+    search_query = request.GET.get('search', '')
+    if search_query:
+        jobs = Job.objects.filter(title__icontains=search_query)  # Search functionality
+    else:
+        jobs = Job.objects.all()  # Fetch all jobs
+    return render(request, 'careers.html', {'jobs': jobs})

@@ -1,7 +1,179 @@
+{% extends 'base.html' %}
 
-{%extends 'base.html'%}
-{%block start%}
-<p>
-    hlooo
-</p>
-{%endblock%}
+{% block start %}
+<style>
+    /* General container styling */
+    .container {
+        margin: auto;
+        margin-top: 20px;
+        padding: 30px;
+        border-radius: 15px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        background: linear-gradient(135deg, #f9f9f9, #ffffff);
+        width: 90%;
+        font-family: 'Poppins', sans-serif;
+    }
+
+    /* Page header */
+    .container h2 {
+        text-align: center;
+        color: #007bff;
+        margin-bottom: 20px;
+        font-size: 2rem;
+        font-weight: bold;
+    }
+
+    /* Search bar */
+    .search-filter {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 20px;
+    }
+
+    .search-filter input {
+        width: 60%;
+        padding: 10px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        margin-right: 10px;
+        font-size: 1rem;
+    }
+
+    .search-filter button {
+        padding: 10px 20px;
+        background-color: #007bff;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        font-size: 1rem;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+    .search-filter button:hover {
+        background-color: #0056b3;
+    }
+
+    /* Table styling */
+    .table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 15px;
+        background-color: white;
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .table th,
+    .table td {
+        padding: 15px;
+        text-align: center;
+    }
+
+    .table th {
+        background-color: #007bff;
+        color: white;
+        font-size: 1.1rem;
+        text-transform: uppercase;
+    }
+
+    .table td {
+        font-size: 1rem;
+        color: #333;
+        border-bottom: 1px solid #ddd;
+    }
+
+    /* Alternating row colors */
+    .table tr:nth-child(even) td {
+        background-color: #f9f9f9;
+    }
+
+    .table tr:hover td {
+        background-color: #e9f5ff;
+    }
+
+    /* Button styling for Apply */
+    .btn-primary {
+        background-color: #007bff;
+        color: white;
+        padding: 10px 15px;
+        border: none;
+        border-radius: 5px;
+        text-decoration: none;
+        font-size: 1rem;
+        transition: background-color 0.3s ease;
+    }
+
+    .btn-primary:hover {
+        background-color: #0056b3;
+    }
+
+    /* Empty message */
+    .empty-row {
+        text-align: center;
+        color: #777;
+        font-size: 1.1rem;
+        font-style: italic;
+        padding: 15px;
+    }
+
+    /* Responsive design */
+    @media (max-width: 768px) {
+        .search-filter input {
+            width: 100%;
+            margin-bottom: 10px;
+        }
+
+        .search-filter button {
+            width: 100%;
+        }
+
+        .table th,
+        .table td {
+            font-size: 0.9rem;
+            padding: 10px;
+        }
+    }
+</style>
+
+<div class="container">
+    <h2>Career Opportunities</h2>
+
+    <!-- Search Filter -->
+    <div class="search-filter">
+        <form method="GET" action="/careers/">
+            <input type="text" name="search" placeholder="Search jobs by title or department..." />
+            <button type="submit">Search</button>
+        </form>
+    </div>
+
+    <!-- Job Table -->
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Sr.No</th>
+                <th scope="col">Job Title</th>
+                <th scope="col">Department</th>
+                <th scope="col">Vacancies</th>
+                <th scope="col">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for job in jobs %}
+                <tr>
+                    <th scope="row">{{ forloop.counter }}</th>
+                    <td>{{ job.title }}</td>
+                    <td>{{ job.department }}</td>
+                    <td>{{ job.vacancies }}</td>
+                    <td><a href="{% url 'apply_page' job.id %}" class="btn-primary">Apply</a></td>
+                </tr>
+            {% empty %}
+                <tr>
+                    <td colspan="5" class="empty-row">No job opportunities available at the moment.</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %} 
