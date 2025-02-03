@@ -181,7 +181,7 @@ STATIC_ROOT = BASE_DIR / "staticfiles"
 STATICFILES_DIRS = [BASE_DIR / "static"]
 
 # Set DEBUG to True only in development
-DEBUG = False  # Set to True in development
+DEBUG = True  # Set to True in development
 
 # Hostnames allowed to serve your Django app (add your domain and localhost)
 ALLOWED_HOSTS = [
