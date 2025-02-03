@@ -13,10 +13,10 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 from pathlib import Path
 import dj_database_url
 import os
-from dotenv import load_dotenv
+# from dotenv import load_dotenv
 
 # Load environment variables from .env file
-load_dotenv()
+# load_dotenv()
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -106,17 +106,26 @@ WSGI_APPLICATION = 'gmwebsite.wsgi.application'
 
 
 
-DATABASE_URL = os.getenv('DATABASE_URL', 'postgres://postgres:swati@localhost:5432/myuser')
+# DATABASE_URL = os.getenv('DATABASE_URL', 'postgres://postgres:swati@localhost:5432/myuser')
+
+DATABASE_URL = os.getenv('DATABASE_URL', 'postgres://swati:swati@ec2-54-123-45-67.compute-1.amazonaws.com:5432/myuser')
+
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'myuser',  # Aapne jo database naam banaya
-        'USER': 'postgres',  # PostgreSQL user
-        'PASSWORD': 'swati',  # PostgreSQL password
-        'HOST': 'localhost',  # Agar local PostgreSQL use kar rahe ho
-        'PORT': '5432',  # Default PostgreSQL port
-        'default': dj_database_url.config(default=DATABASE_URL)
-    }
+     'default': dj_database_url.config(default='postgres://swati:swati@ec2-54-123-45-67.compute-1.amazonaws.com:5432/myuser')
+}
+
+      
+
+    # 'default': {
+    #     'ENGINE': 'django.db.backends.postgresql',
+    #     'NAME': 'myuser',  # Aapne jo database naam banaya
+    #     'USER': 'postgres',  # PostgreSQL user
+    #     'PASSWORD': 'swati',  # PostgreSQL password
+    #     'HOST': 'localhost',  # Agar local PostgreSQL use kar rahe ho
+    #     'PORT': '5432',  # Default PostgreSQL port
+    #     'default': dj_database_url.config(default=DATABASE_URL)
+    # }
+   
 }
 
 
