@@ -30,7 +30,8 @@ def apply_page(request,id):
        messages.success(request, "Your application has been submitted successfully!")
        s1 =Applicant.objects.create(name = name,age =age,mobile=mobile,gender=gender,email_add= email)
        s1.save()
-       redirect('services')
+       return redirect('services')
+
     return render(request, 'apply_page.html')
 
 
