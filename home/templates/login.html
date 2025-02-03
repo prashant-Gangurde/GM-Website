@@ -1,6 +1,5 @@
-
 {%extends 'base.html'%}
-{%block start%}
+{% block start %}
 <div class="container col-6 shadow-lg mt-3 p-5">
     {% if messages %}
     <div class="container border border-success-subtle">
@@ -31,6 +30,6 @@
         <button type="submit" class="btn btn-primary">Login</button>
         Don't have account? <a href="{% url 'register_page' %}"> Register</a>
       </form>
-
+ 
 </div>
 {%endblock%}
