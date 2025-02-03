@@ -11,6 +11,13 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 """
 
 from pathlib import Path
+import dj_database_url
+import os
+from dotenv import load_dotenv
+
+# Load environment variables from .env file
+load_dotenv()
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -95,6 +102,11 @@ WSGI_APPLICATION = 'gmwebsite.wsgi.application'
 #         'NAME': BASE_DIR / 'db.sqlite3',  # Ensure 'BASE_DIR' is correctly defined
 #     }
 # }
+
+
+
+
+DATABASE_URL = os.getenv('DATABASE_URL', 'postgres://postgres:swati@localhost:5432/myuser')
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
@@ -103,6 +115,7 @@ DATABASES = {
         'PASSWORD': 'swati',  # PostgreSQL password
         'HOST': 'localhost',  # Agar local PostgreSQL use kar rahe ho
         'PORT': '5432',  # Default PostgreSQL port
+        'default': dj_database_url.config(default=DATABASE_URL)
     }
 }
 
