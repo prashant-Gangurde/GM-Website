@@ -12,7 +12,7 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 
 from pathlib import Path
 import dj_database_url
-import os
+# import os
 # from dotenv import load_dotenv
 
 # Load environment variables from .env file
@@ -108,7 +108,7 @@ WSGI_APPLICATION = 'gmwebsite.wsgi.application'
 
 # DATABASE_URL = os.getenv('DATABASE_URL', 'postgres://postgres:swati@localhost:5432/myuser')
 
-DATABASE_URL = os.getenv('DATABASE_URL', 'postgres://swati:swati@ec2-54-123-45-67.compute-1.amazonaws.com:5432/myuser')
+# DATABASE_URL = os.getenv('DATABASE_URL', 'postgres://swati:swati@ec2-54-123-45-67.compute-1.amazonaws.com:5432/myuser')
 
 DATABASES = {
      'default': dj_database_url.config(default='postgres://swati:swati@ec2-54-123-45-67.compute-1.amazonaws.com:5432/myuser')
