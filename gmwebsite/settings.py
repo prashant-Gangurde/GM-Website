@@ -111,8 +111,9 @@ WSGI_APPLICATION = 'gmwebsite.wsgi.application'
 # DATABASE_URL = os.getenv('DATABASE_URL', 'postgres://swati:swati@ec2-54-123-45-67.compute-1.amazonaws.com:5432/myuser')
 
 DATABASES = {
-     'default': dj_database_url.config(default='postgres://swati:swati@ec2-54-123-45-67.compute-1.amazonaws.com:5432/myuser')
+    'default': dj_database_url.config(default='postgres://swati:swati@ec2-54-123-45-67.compute-1.amazonaws.com:5432/myuser')
 }
+    
 
       
 
